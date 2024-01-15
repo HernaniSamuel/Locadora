@@ -1,0 +1,45 @@
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.widgets import PasswordInput
+from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
+from .models import User
+
+
+class LoginForm(FlaskForm):
+    nome = StringField(label='Nome', validators=[Length(min=2, max=50), DataRequired()])
+    password = StringField(label='Senha', widget=PasswordInput(hide_value=False), validators=[DataRequired()])
+    submit = SubmitField(label='Entrar')
+
+
+class RegisterForm(FlaskForm):
+    def validate_nome(self, nome_to_check):
+        user = User.query.filter_by(nome=nome_to_check.data).first()
+        if user:
+            raise ValidationError("Nome de usuário já cadastrado!")
+
+    def validate_identidade(self, identidade_to_check):
+        identidade = User.query.filter_by(identidade=identidade_to_check.data).first()
+        if identidade:
+            raise ValidationError("Identidade já cadastrada!")
+
+    def validate_carteira_motorista(self, carteira_motorista_to_check):
+        carteira_motorista = User.query.filter_by(carteira_motorista=carteira_motorista_to_check.data).first()
+        if carteira_motorista:
+            raise ValidationError("CNH já cadastrada!")
+
+    def validate_email(self, email_to_check):
+        email = User.query.filter_by(email=email_to_check.data).first()
+        if email:
+            raise ValidationError("Email já cadastrado!")
+
+
+    
+    nome = StringField(label='Nome', validators=[Length(min=2, max=50), DataRequired()])
+    identidade = StringField(label='Identidade', validators=[Length(min=8, max=15), DataRequired()])
+    carteira_motorista = StringField(label='CNH', validators=[Length(max=11), DataRequired()])
+    telefone = StringField(label='Telefone', validators=[Length(max=20), DataRequired()])
+    email = StringField(label='Email', validators=[Email(), DataRequired()])
+    endereco = StringField(label='Endereço', validators=[Length(max=500), DataRequired()])
+    password1 = PasswordField(label='Senha', validators=[Length(min=6, max=16), DataRequired()])
+    password2 = PasswordField(label='Confirmar senha', validators=[EqualTo('password1')])
+    submit = SubmitField(label='Cadastrar!')

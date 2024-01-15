@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form method="post" class="form-register">
+            {{ form.hidden_tag() }}
+            <h1>Login</h1>
+            {{ form.nome.label() }}
+            {{ form.nome(class='form-control', placeholder='Usuário') }}
+            {{ form.password.label() }}
+            {{ form.password(class='form-control', placeholder='senha') }}
+            {{ form.submit(class='btn btn-primary btn-lg btn-block') }}
+
+        <div class="checkbox mb-3" style="text-align:center; margin-top:24px">
+            <h6>Não tem uma conta?</h6>
+            <a class="btn btn-sm btn-secondary" href="{{ url_for('routes.register') }}">Registrar</a>
+        </div>
+
+        </form>
+    </div>
+
+    <style>
+        .form-control { margin-bottom:24px; }
+        .btn btn-primary { margin: auto; }
+        h1 { text-align:center; margin-top:12px; }
+    </style>
+{% endblock %}

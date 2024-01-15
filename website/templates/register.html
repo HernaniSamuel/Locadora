@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrar-se{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form method="POST" class="form-register">
+            {{ form.hidden_tag() }}
+
+            <h1>Registrar conta</h1>
+
+            {{ form.nome.label() }}
+            {{ form.nome(class='form-control', placeholder='Usuário') }}
+
+            {{ form.identidade.label() }}
+            {{ form.identidade(class='form-control', placeholder='Identidade (RG/CPF/OAB)')}}
+
+            {{ form.carteira_motorista.label() }}
+            {{ form.carteira_motorista(class_='form-control', placeholder='Número da CNH')}}
+
+            {{ form.telefone.label() }}
+            {{ form.telefone(class='form-control', placeholder='Número do telefone')}}
+
+            {{ form.email.label() }}
+            {{ form.email(class='form-control', placeholder='Email')}}
+
+            {{ form.endereco.label() }}
+            {{ form.endereco(class='form-control', placeholder='Nome')}}
+
+            {{ form.password1.label() }}
+            {{ form.password1(class="form-control", placeholder="Senha") }}
+
+            {{ form.password2.label() }}
+            {{ form.password2(class="form-control", placeholder="Confirmar senha") }}
+
+            {{ form.submit(class="btn btn-primary btn-lg btn-block ") }}
+
+            <div class="checkbox mb-3" style="text-align:center; margin-top:24px">
+                <h6>Já tem uma conta?</h6>
+                <a class="btn btn-sm btn-secondary" href="{{ url_for('routes.login') }}">Entrar</a>
+            </div>
+
+        </form>
+    </div>
+    <style>
+        .form-control { margin-bottom:24px; }
+        .btn btn-primary { margin: auto; }
+        h1 { text-align:center; margin-top:12px; }
+    </style>
+{% endblock %}
