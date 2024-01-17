@@ -1,13 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, FloatField
 from wtforms.widgets import PasswordInput
-from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
+from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError, NumberRange
 from .models import User
+from datetime import datetime
 
 
 class LoginForm(FlaskForm):
     nome = StringField(label='Nome', validators=[Length(min=2, max=50), DataRequired()])
-    password = StringField(label='Senha', widget=PasswordInput(hide_value=False), validators=[DataRequired()])
+    password = PasswordField(label='Senha', widget=PasswordInput(hide_value=False), validators=[DataRequired()])
     submit = SubmitField(label='Entrar')
 
 
@@ -33,7 +34,6 @@ class RegisterForm(FlaskForm):
             raise ValidationError("Email já cadastrado!")
 
 
-    
     nome = StringField(label='Nome', validators=[Length(min=2, max=50), DataRequired()])
     identidade = StringField(label='Identidade', validators=[Length(min=8, max=15), DataRequired()])
     carteira_motorista = StringField(label='CNH', validators=[Length(max=11), DataRequired()])
@@ -43,3 +43,16 @@ class RegisterForm(FlaskForm):
     password1 = PasswordField(label='Senha', validators=[Length(min=6, max=16), DataRequired()])
     password2 = PasswordField(label='Confirmar senha', validators=[EqualTo('password1')])
     submit = SubmitField(label='Cadastrar!')
+
+
+class CarForm(FlaskForm):
+     nome = StringField(label='Nome', validators=[Length(max=30), DataRequired()])
+     marca = StringField(label='Marca', validators=[Length(max=30), DataRequired()])
+     ano_fabricacao = IntegerField(label='Ano de fabricação', validators=[DataRequired(), NumberRange(min=1870, max=datetime.utcnow().year)])
+     consumo = FloatField(label='Consumo (km/l)', validators=[DataRequired()])
+     preco_base = FloatField(label='Preço base', validators=[DataRequired()])
+     submit = SubmitField(label='Cadastrar!')
+
+
+class AlugarForm(FlaskForm):
+    submit = SubmitField(label='Alugar!')

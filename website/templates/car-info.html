@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Sobre{% endblock %}
+
+{% block content %}
+    <h1>Sobre o {{ carro.nome }}</h1>
+    <p>Informações adicionais sobre o carro serão postas aqui a medida que o projeto evolui</p>
+    <a class="btn btn-outline btn-success" href="{{ url_for('routes.processamento', carro_id=carro.id) }}">Alugar</a>
+    <a class="btn btn-outline btn-secondary" href="{{ url_for('routes.catalogo') }}">Voltar</a>
+{% endblock %}

@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     endereco = db.Column(db.String(length=500), nullable=False)
     password_hash = db.Column(db.String(length=60), nullable=False)
     carros = db.relationship('Carro', backref='alugado', lazy=True)
-    role = db.Column(db.String(), default='client')
+    role = db.Column(db.String(), default='client') # 'manager' é o administrador
 
     @property
     def password(self):
@@ -36,5 +36,6 @@ class Carro(db.Model):
     nome = db.Column(db.String(length=30), nullable=False)
     marca = db.Column(db.String(length=30), nullable=False)
     ano_fabricacao = db.Column(db.Integer(), nullable=False)
-    consumo = db.Column(db.Integer(), nullable=False)
+    consumo = db.Column(db.Float(), nullable=False)
     locador = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    preco_base = db.Column(db.Float(), nullable=False)
