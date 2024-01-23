@@ -3,8 +3,26 @@
 {% block title %}Sobre{% endblock %}
 
 {% block content %}
-    <h1>Sobre o {{ carro.nome }}</h1>
-    <p>Informações adicionais sobre o carro serão postas aqui a medida que o projeto evolui</p>
-    <a class="btn btn-outline btn-success" href="{{ url_for('routes.processamento', carro_id=carro.id) }}">Alugar</a>
-    <a class="btn btn-outline btn-secondary" href="{{ url_for('routes.catalogo') }}">Voltar</a>
+    <div class="container">
+        <h1>Sobre o {{ carro.nome }}</h1>
+        <img src="{{ carro.imagem }}" alt="imagem do carro"/>
+        <p>{{ carro.descricao }}</p>
+        <p>Marca: {{ carro.marca }}</p>
+        <p>Ano de fabricação: {{ carro.ano_fabricacao }}</p>
+        <p>Consumo (km/l misto): {{ carro.consumo }}</p>
+        {% if carro.locador == None %}
+            <a class="btn btn-outline btn-success" href="{{ url_for('routes.processamento', carro_id=carro.id) }}">Alugar</a>
+        {% endif %}
+        <a class="btn btn-outline btn-secondary" href="{{ url_for('routes.catalogo') }}">Voltar</a>
+    </div>
+
+<style>
+    .container{
+        width:100%;
+        text-align:center;
+    }
+    img{
+        max-width:90vw;
+    }
+</style>
 {% endblock %}

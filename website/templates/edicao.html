@@ -1,33 +1,24 @@
 {% extends 'base.html' %}
-{% block title %}Catálogo{% endblock %}
+
+{% block title %}Edição{% endblock %}
 {% block content %}
-    <h2 style="margin:24px 0px; text-align:center; text-transform:uppercase;">Veículos disponíveis</h2>
+    <h2 style="margin:24px 0px; text-align:center; text-transform:uppercase;">Edição de veículos</h2>
     <div class="products-container">
         {% for carro in carros %}
         <div class="product-container">
-            {% if carro.imagem == None %}
-                <img src="https://img.freepik.com/fotos-premium/carro-coberto-com-vail_700248-7997.jpg" alt="Carro sem imagem"/>
-            {% endif %}
-            <img src="{{ carro.imagem }}"/>
             <h3>{{ carro.nome }}</h3>
-            <p>{{ carro.descricao }}</p>
-            <p>Preço base: R${{ carro.preco_base }}</p>
-
+            <p>Marca: {{ carro.marca }}</p>
+            <p>Ano: {{ carro.ano_fabricacao }}</p>
+            <p>Consumo (km/l): {{ carro.consumo }}</p>
+            <p>Preço base: {{ carro.preco_base }}</p>
             <div class="buttons">
-                <a class="btn btn-outline btn-info" href="{{ url_for('routes.car_info', carro_id=carro.id) }}">Ver mais</a>
-                <a class="btn btn-outline btn-success" href="{{ url_for('routes.processamento', carro_id=carro.id) }}">Alugar</a>
+                <a class="btn btn-outline btn-danger" href="{{ url_for('routes.delecao_carro', carro_id=carro.id) }}">Deletar</a>
+                <a class="btn btn-outline btn-info" href="{{ url_for('routes.edicao_carro', carro_id=carro.id) }}">Editar</a>
             </div>
-
         </div>
         {% endfor %}
     </div>
     <style>
-        img{
-            width:300px;
-            display:block;
-            margin:auto;
-            border:1px solid black;
-        }
         .products-container{
             display: flex;
             align-items: center;
@@ -41,8 +32,7 @@
             padding: 10px;
             margin:10px;
 
-            width:400px;
-            min-height:400px
+            max-width: fit-content;
         }
 
         .product-container > h3{

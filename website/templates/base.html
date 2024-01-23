@@ -28,19 +28,30 @@
                         <a class="nav-link" href="{{ url_for('routes.logout') }}">Sair</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#">Adm</a>
-                    </li>
-                    <li>
                         <a class="nav-link" href="{{ url_for('routes.car_register') }}">Registrar Veículo</a>
                     </li>
-
+                    <li>
+                        <a class="nav-link" href="{{ url_for('routes.carros_alugados') }}">Carros alugados</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ url_for('routes.edicao') }}">Editar carros</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ url_for('routes.edicao_perfil') }}">Editar perfil</a>
+                    </li>
                 </ul>
             {% elif current_user.is_authenticated %}
                 <ul class="navbar-nav">
                       <li>
                           <a class="nav-link" href="{{ url_for('routes.logout') }}">Sair</a>
                       </li>
-              </ul>
+                      <li>
+                          <a class="nav-link" href="{{ url_for('routes.carros_alugados') }}">Carros alugados</a>
+                      </li>
+                       <li>
+                        <a class="nav-link" href="{{ url_for('routes.edicao_perfil') }}">Editar perfil</a>
+                      </li>
+                </ul>
             {% else %}
               <ul class="navbar-nav">
                   <li class="nav-item">

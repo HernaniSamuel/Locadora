@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Seus carros{% endblock %}
+{% block content %}
+    <h2 style="margin:24px 0px; text-align:center; text-transform:uppercase;">Veículos alugados por {{ current_user.nome }}</h2>
+    <div class="products-container">
+        {% if carros == [] %}
+            <h2>Você ainda não tem carros alugados! Para alugar um carro, basta ir ao catálogo e fazer a sua escolha.</h2>
+        {% else %}
+            {% for carro in carros %}
+                <div class="product-container">
+                    <h3>{{ carro.nome }}</h3>
+                    <img src="{{ carro.imagem }}" />
+                    <p>{{ carro.descricao }}</p>
+
+                    <div class="buttons">
+                        <a class="btn btn-outline btn-info" href="{{ url_for('routes.car_info', carro_id=carro.id) }}">Ver mais</a>
+                        <a class="btn btn-outline btn-info" href="{{ url_for('routes.devolucao', carro_id=carro.id) }}">Devolver</a>
+                    </div>
+
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <style>
+        .products-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .product-container{
+            border:1px solid blue;
+            border-radius: 5px;
+            padding: 10px;
+            margin:10px;
+
+            max-width: fit-content;
+        }
+
+        .product-container > h3{
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .product-container > p{
+            margin: 24px 12px;
+        }
+
+        .product-container > .buttons{
+            text-align: center;
+            margin:12px;
+        }
+
+    img{
+        max-width:90vw;
+    }
+
+    </style>
+{% endblock %}

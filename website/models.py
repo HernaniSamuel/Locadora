@@ -39,3 +39,5 @@ class Carro(db.Model):
     consumo = db.Column(db.Float(), nullable=False)
     locador = db.Column(db.Integer(), db.ForeignKey('user.id'))
     preco_base = db.Column(db.Float(), nullable=False)
+    descricao = db.Column(db.String(length=500))
+    imagem = db.Column(db.String(), default=None)

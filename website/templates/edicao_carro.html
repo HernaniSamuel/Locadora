@@ -6,21 +6,21 @@
     <div class="container">
         <form method="post" class="form-register">
             {{ form.hidden_tag() }}
-            <h1>Registrar veículo</h1>
+            <h1>Editar veículo</h1>
             {{ form.nome.label() }}
-            {{ form.nome(class='form-control', placeholder='Uno Mille') }}
+            {{ form.nome(class='form-control') }}
 
             {{ form.marca.label() }}
-            {{ form.marca(class='form-control', placeholder='FIAT') }}
+            {{ form.marca(class='form-control') }}
 
             {{ form.ano_fabricacao.label() }}
-            {{ form.ano_fabricacao(class='form-control', placeholder='2003') }}
+            {{ form.ano_fabricacao(class='form-control') }}
 
             {{ form.consumo.label() }}
-            {{ form.consumo(class='form-control', placeholder='12.4') }}
+            {{ form.consumo(class='form-control') }}
 
             {{ form.preco_base.label() }}
-            {{ form.preco_base(class='form-control', placeholder='1320.00') }}
+            {{ form.preco_base(class='form-control') }}
 
             {{ form.descricao.label() }}
             {{ form.descricao(class='form-control', placeholder='Qualidades do carro (opcional)') }}
