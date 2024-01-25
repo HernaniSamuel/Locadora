@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Edição{% endblock %}
+{% block content %}
+    <h2 style="margin:24px 0px; text-align:center; text-transform:uppercase;">Edição de veículos</h2>
+    <div class="products-container">
+        {% for carro in carros %}
+        <div class="product-container">
+            <h3>{{ carro.nome }}</h3>
+            <p>Marca: {{ carro.marca }}</p>
+            <p>Ano: {{ carro.ano_fabricacao }}</p>
+            <p>Consumo (km/l): {{ carro.consumo }}</p>
+            <p>Preço base: {{ carro.preco_base }}</p>
+            <div class="buttons">
+                <a class="btn btn-outline btn-danger" href="{{ url_for('routes.delecao_carro', carro_id=carro.id) }}">Deletar</a>
+                <a class="btn btn-outline btn-info" href="{{ url_for('routes.edicao_carro', carro_id=carro.id) }}">Editar</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <style>
+        .products-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .product-container{
+            border:1px solid blue;
+            border-radius: 5px;
+            padding: 10px;
+            margin:10px;
+
+            max-width: fit-content;
+        }
+
+        .product-container > h3{
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .product-container > p{
+            margin: 24px 12px;
+        }
+
+        .product-container > .buttons{
+            text-align: center;
+            margin:12px;
+        }
+    </style>
+{% endblock %}

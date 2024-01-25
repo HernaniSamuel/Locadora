@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Catálogo{% endblock %}
+{% block content %}
+    <h2 style="margin:24px 0px; text-align:center; text-transform:uppercase;">Veículos disponíveis</h2>
+    <div class="products-container">
+        {% for carro in carros %}
+        <div class="product-container">
+            {% if carro.imagem == None %}
+                <img src="https://img.freepik.com/fotos-premium/carro-coberto-com-vail_700248-7997.jpg" alt="Carro sem imagem"/>
+            {% endif %}
+            <img src="{{ carro.imagem }}"/>
+            <h3>{{ carro.nome }}</h3>
+            <p>{{ carro.descricao }}</p>
+            <p>Preço base: R${{ carro.preco_base }}</p>
+
+            <div class="buttons">
+                <a class="btn btn-outline btn-info" href="{{ url_for('routes.car_info', carro_id=carro.id) }}">Ver mais</a>
+                <a class="btn btn-outline btn-success" href="{{ url_for('routes.processamento', carro_id=carro.id) }}">Alugar</a>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+    <style>
+        img{
+            width:300px;
+            display:block;
+            margin:auto;
+            border:1px solid black;
+        }
+        .products-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .product-container{
+            border:1px solid blue;
+            border-radius: 5px;
+            padding: 10px;
+            margin:10px;
+
+            width:400px;
+            min-height:400px
+        }
+
+        .product-container > h3{
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .product-container > p{
+            margin: 24px 12px;
+        }
+
+        .product-container > .buttons{
+            text-align: center;
+            margin:12px;
+        }
+    </style>
+{% endblock %}

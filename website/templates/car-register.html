@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastrar veículo{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form method="post" class="form-register">
+            {{ form.hidden_tag() }}
+            <h1>Registrar veículo</h1>
+            {{ form.nome.label() }}
+            {{ form.nome(class='form-control', placeholder='Uno Mille') }}
+
+            {{ form.marca.label() }}
+            {{ form.marca(class='form-control', placeholder='FIAT') }}
+
+            {{ form.ano_fabricacao.label() }}
+            {{ form.ano_fabricacao(class='form-control', placeholder='2003') }}
+
+            {{ form.consumo.label() }}
+            {{ form.consumo(class='form-control', placeholder='12.4') }}
+
+            {{ form.preco_base.label() }}
+            {{ form.preco_base(class='form-control', placeholder='1320.00') }}
+
+            {{ form.descricao.label() }}
+            {{ form.descricao(class='form-control', placeholder='Qualidades do carro (opcional)') }}
+
+            {{ form.imagem.label() }}
+            {{ form.imagem(class='form-control', placeholder='url da imagem do carro, se tiver...') }}
+
+            {{ form.submit(class='btn btn-primary btn-lg btn-block') }}
+        </form>
+    </div>
+
+    <style>
+        .form-control { margin-bottom:24px; }
+        .btn btn-primary { margin: auto; }
+        h1 { text-align:center; margin-top:12px; }
+    </style>
+{% endblock %}

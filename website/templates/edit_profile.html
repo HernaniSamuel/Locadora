@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form method="POST" class="form-register">
+            {{ form.hidden_tag() }}
+
+            <h1>Editar Perfil</h1>
+
+            {{ form.nome.label() }}
+            {{ form.nome(class='form-control') }}
+
+            {{ form.identidade.label() }}
+            {{ form.identidade(class='form-control')}}
+
+            {{ form.carteira_motorista.label() }}
+            {{ form.carteira_motorista(class_='form-control')}}
+
+            {{ form.telefone.label() }}
+            {{ form.telefone(class='form-control')}}
+
+            {{ form.email.label() }}
+            {{ form.email(class='form-control')}}
+
+            {{ form.endereco.label() }}
+            {{ form.endereco(class='form-control')}}
+
+            {{ form.password1.label() }}
+            {{ form.password1(class="form-control") }}
+
+            {{ form.password2.label() }}
+            {{ form.password2(class="form-control") }}
+
+            {{ form.submit(class="btn btn-primary btn-lg btn-block ") }}
+            {% if current_user.role == 'client' %}
+                <a href="{{ url_for('routes.delecao_perfil') }}" class="btn btn-danger btn-lg btn-block ">Deletar Perfil</a>
+            {% endif %}
+        </form>
+    </div>
+    <style>
+        .form-control { margin-bottom:24px; }
+        .btn btn-primary{ margin: auto; }
+        a{ margin-bottom: 30px; }
+        h1 { text-align:center; margin-top:12px; }
+    </style>
+{% endblock %}
