@@ -317,3 +317,50 @@ def delete_img(img_id, carro_id):
     else:
         flash('Esta página é apenas para administradores!', category='danger')
         return redirect(url_for('routes.home'))
+
+
+@routes.route('/deletar_usuario', methods=['GET', 'POST'])
+@login_required
+def deletar_usuario():
+    if current_user.role == 'manager':
+        usersDB = User.query.all()
+        users = []
+        for user in usersDB:
+            if user.role == 'client':
+                users.append(user)
+        return render_template('deletar_usuario.html', current_user=current_user, users=users)
+
+    else:
+        flash('Esta página é apenas para administradores!', category='danger')
+        return redirect(url_for('routes.home'))
+
+
+@routes.route('/apagar_usuario/<user_id>', methods=['GET', 'POST'])
+@login_required
+def apagar_usuario(user_id):
+    if current_user.role == 'manager':
+        usuario = User.query.get_or_404(user_id)
+        form = DeletarForm()
+        if usuario.role == 'manager':
+            flash('A conta de superusuário não pode ser apagada!', category='danger')
+            return redirect(url_for('routes.home'))
+        if form.validate_on_submit():
+
+            carros = Carro.query.filter_by(locador=usuario.id)
+            for carro in carros:
+                carro.locador=None
+                db.session.commit()
+
+            db.session.delete(usuario)
+            db.session.commit()
+            flash('Usuário deletado com sucesso!', category='success')
+            return redirect(url_for('routes.home'))
+
+        if form.errors != {}:
+            for err_msg in form.errors.values():
+                flash(f'Erro ao deletar: {err_msg}', category='danger')
+
+        return render_template('apagar_usuario.html', current_user=current_user, form=form, usuario=usuario)
+    else:
+        flash('Acesso negado!', category='danger')
+        return redirect(url_for('routes.home'))

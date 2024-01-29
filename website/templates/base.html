@@ -39,6 +39,9 @@
                     <li>
                         <a class="nav-link" href="{{ url_for('routes.edicao_perfil') }}">Editar perfil</a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{ url_for('routes.deletar_usuario') }}">Deletar usuário</a>
+                    </li>
                 </ul>
             {% elif current_user.is_authenticated %}
                 <ul class="navbar-nav">

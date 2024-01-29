@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Deletar veículo{% endblock %}
+{% block content %}
+    <h1>Confirmar deleção</h1>
+    <p>Você está prestes a deletar o usuário {{ usuario.nome }} e todos os carros por ele alugados serão imediatamente retomados mediante o pagamento de multa pela locadora.</p>
+    <form method="post" class="form-register">
+        {{ form.hidden_tag() }}
+        <a class="btn btn-secondary btn-lg" href="{{ url_for('routes.home') }}">Cancelar deleção</a>
+        {{ form.submit(class='btn btn-danger btn-lg') }}
+    </form>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Deletar usuário{% endblock %}
+{% block content %}
+    <h1>Deletar usuários</h1>
+    <p>Algum usuário não entra há muito tempo? Pediu para remover a conta do sistema pois perdeu a senha? Isso pode ser feito por aqui</p>
+    {% for usuario in users %}
+        <p>{{usuario.nome}} <a href="{{ url_for('routes.apagar_usuario', user_id=usuario.id) }}">Deletar</a></p>
+    {% endfor %}
+{% endblock %}
