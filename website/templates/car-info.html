@@ -5,13 +5,13 @@
 {% block content %}
     <div class="container">
         <h1>Sobre o {{ carro.nome }}</h1>
-        
-        <div class="carrossel-gambiarra">
-            <button onclick="anterior()">Anterior</button>
-            <img id="imagemCarrossel" src="{{ imagens[0].link }}">
-            <button onclick="proximo()">Próximo</button>
-        </div>
-
+        {% if imagens != [] %}
+            <div class="carrossel-gambiarra">
+                <button onclick="anterior()">Anterior</button>
+                <img id="imagemCarrossel" src="{{ imagens[0].link }}">
+                <button onclick="proximo()">Próximo</button>
+            </div>
+        {% endif %}
         <p>{{ carro.descricao }}</p>
         <p>Marca: {{ carro.marca }}</p>
         <p>Ano de fabricação: {{ carro.ano_fabricacao }}</p>
@@ -36,7 +36,18 @@
         align-items:center;
         justify-content:center;
         gap:20px;
+        max-width:60vw;
+        margin:auto;
     }
+    @media screen and (max-width: 720px) {
+    .carrossel-gambiarra{
+        max-width:50vw;
+    }
+    img{
+        max-width:40vw;
+        max-height:60vh;
+    }
+ }
 </style>
 <script>
     var imagens = {{ imagens | tojson }};

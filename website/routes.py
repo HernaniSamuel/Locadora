@@ -274,6 +274,7 @@ def adicionar_imagem(carro_id):
             imagem = Foto(link=form.link.data, carro=carro.id)
             db.session.add(imagem)
             db.session.commit()
+            flash("Imagem adicionada com sucesso!", category="success")
             return redirect(url_for('routes.adicionar_imagem', carro_id=carro_id))
 
         if form.errors != {}:
@@ -281,6 +282,37 @@ def adicionar_imagem(carro_id):
                 flash(f'Erro ao adicionar imagem: {err_msg}', category='danger')
 
         return render_template('CarImg.html', current_user=current_user, form=form)
+
+    else:
+        flash('Esta página é apenas para administradores!', category='danger')
+        return redirect(url_for('routes.home'))
+
+
+@routes.route('/deletar_imagem/<carro_id>', methods=['GET', 'POST'])
+@login_required
+def deletar_imagem(carro_id):
+    if current_user.role == 'manager':
+        carro = Carro.query.get_or_404(carro_id)
+        imagens = []
+        for imagem in carro.imagem:
+            imagens.append(imagem)
+        return render_template('ImgList.html', current_user=current_user, carro=carro, imagens=imagens)
+
+    else:
+        flash('Esta página é apenas para administradores!', category='danger')
+        return redirect(url_for('routes.home'))
+
+
+@routes.route('/delete_img/<img_id>/<carro_id>', methods=['GET', 'POST'])
+@login_required
+def delete_img(img_id, carro_id):
+    if current_user.role == 'manager':
+        carro = Carro.query.get_or_404(carro_id)
+        img_del = Foto.query.get_or_404(img_id)
+        db.session.delete(img_del)
+        db.session.commit()
+        flash("Imagem deletada com sucesso!", category="success")
+        return render_template('ImgList.html', current_user=current_user, carro=carro)
 
     else:
         flash('Esta página é apenas para administradores!', category='danger')
