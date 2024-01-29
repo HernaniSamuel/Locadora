@@ -89,7 +89,7 @@ class CarForm(FlaskForm):
      consumo = FloatField(label='Consumo (km/l)', validators=[DataRequired()])
      preco_base = FloatField(label='Preço base', validators=[DataRequired()])
      descricao = StringField(label='Descrição', validators=[Length(max=500)])
-     imagem = StringField(label='Link da imagem')
+
 
      submit = SubmitField(label='Cadastrar!')
 
@@ -102,7 +102,7 @@ class CarEditForm(FlaskForm):
     consumo = FloatField(label='Consumo (km/l)', validators=[DataRequired()])
     preco_base = FloatField(label='Preço base', validators=[DataRequired()])
     descricao = StringField(label='Descrição', validators=[Length(max=500)])
-    imagem = StringField(label='Link da imagem')
+
     submit = SubmitField(label='Editar')
 
 
@@ -116,3 +116,8 @@ class DevolverForm(FlaskForm):
 
 class DeletarForm(FlaskForm):
     submit = SubmitField(label='Deletar')
+
+
+class CarImgForm(FlaskForm):
+    link = StringField(label='Link da imagem', validators=[DataRequired()])
+    submit = SubmitField(label='Adicionar')

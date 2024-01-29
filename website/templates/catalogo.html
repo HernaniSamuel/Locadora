@@ -5,10 +5,7 @@
     <div class="products-container">
         {% for carro in carros %}
         <div class="product-container">
-            {% if carro.imagem == None %}
-                <img src="https://img.freepik.com/fotos-premium/carro-coberto-com-vail_700248-7997.jpg" alt="Carro sem imagem"/>
-            {% endif %}
-            <img src="{{ carro.imagem }}"/>
+            {% if carro.imagem[0] %}<img src="{{ carro.imagem[0].link }}" alt="imagem do carro"/>{% endif %}
             <h3>{{ carro.nome }}</h3>
             <p>{{ carro.descricao }}</p>
             <p>Preço base: R${{ carro.preco_base }}</p>

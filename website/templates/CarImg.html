@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Adicionar Imagem{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form method="post" class="form-register" autocomplete="off">
+            {{ form.hidden_tag() }}
+            <h1>Adicionar Imagem</h1>
+            {{ form.link.label() }}
+            {{ form.link(class='form-control', placeholder='Link da Imagem') }}
+
+            {{ form.submit(class='btn btn-primary btn-lg btn-block') }}
+        </form>
+    </div>
+
+    <style>
+        .form-control { margin-bottom:24px; }
+        .btn btn-primary { margin: auto; }
+        h1 { text-align:center; margin-top:12px; }
+    </style>
+{% endblock %}

@@ -1,6 +1,6 @@
-from .models import User, Carro
+from .models import User, Carro, Foto
 from flask import render_template, Blueprint, redirect, url_for, flash
-from .forms import LoginForm, RegisterForm, CarForm, AlugarForm, DevolverForm, CarEditForm, DeletarForm, EditUserForm
+from .forms import LoginForm, RegisterForm, CarForm, AlugarForm, DevolverForm, CarEditForm, DeletarForm, EditUserForm, CarImgForm
 from . import db
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -77,7 +77,7 @@ def car_register():
                 consumo=form.consumo.data,
                 preco_base=form.preco_base.data,
                 descricao=form.descricao.data,
-                imagem=form.imagem.data
+
             )
             db.session.add(car_to_add)
             db.session.commit()
@@ -123,7 +123,12 @@ def processamento(carro_id):
 @routes.route('/car-info/<carro_id>', methods=['GET', 'POST'])
 def car_info(carro_id):
     carro = Carro.query.get_or_404(carro_id)
-    return render_template('car-info.html', current_user=current_user, carro=carro)
+    imagens = []
+    for imagem in carro.imagem:
+        imagens.append(imagem)
+    imagens_json = [{'id': foto.id, 'link': foto.link} for foto in imagens]
+
+    return render_template('car-info.html', current_user=current_user, carro=carro, imagens=imagens_json)
 
 
 @routes.route('/caros_alugados', methods=['GET', 'POST'])
@@ -172,7 +177,7 @@ def edicao_carro(carro_id):
             carro.consumo=form.consumo.data
             carro.preco_base=form.preco_base.data
             carro.descricao=form.descricao.data
-            carro.imagem=form.imagem.data
+
             db.session.commit()
 
             flash(f'Veículo editado com sucesso!', category='success')
@@ -256,4 +261,27 @@ def delecao_perfil():
         return render_template('delete_user.html', current_user=current_user, form=form)
     else:
         flash('A conta de superusuário não pode ser apagada!', category='danger')
+        return redirect(url_for('routes.home'))
+
+
+@routes.route('/adicionar_imagem/<carro_id>', methods=['GET', 'POST'])
+@login_required
+def adicionar_imagem(carro_id):
+    if current_user.role == 'manager':
+        carro = Carro.query.get_or_404(carro_id)
+        form = CarImgForm()
+        if form.validate_on_submit():
+            imagem = Foto(link=form.link.data, carro=carro.id)
+            db.session.add(imagem)
+            db.session.commit()
+            return redirect(url_for('routes.adicionar_imagem', carro_id=carro_id))
+
+        if form.errors != {}:
+            for err_msg in form.errors.values():
+                flash(f'Erro ao adicionar imagem: {err_msg}', category='danger')
+
+        return render_template('CarImg.html', current_user=current_user, form=form)
+
+    else:
+        flash('Esta página é apenas para administradores!', category='danger')
         return redirect(url_for('routes.home'))

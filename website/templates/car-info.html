@@ -5,7 +5,13 @@
 {% block content %}
     <div class="container">
         <h1>Sobre o {{ carro.nome }}</h1>
-        <img src="{{ carro.imagem }}" alt="imagem do carro"/>
+        
+        <div class="carrossel-gambiarra">
+            <button onclick="anterior()">Anterior</button>
+            <img id="imagemCarrossel" src="{{ imagens[0].link }}">
+            <button onclick="proximo()">Próximo</button>
+        </div>
+
         <p>{{ carro.descricao }}</p>
         <p>Marca: {{ carro.marca }}</p>
         <p>Ano de fabricação: {{ carro.ano_fabricacao }}</p>
@@ -23,6 +29,31 @@
     }
     img{
         max-width:90vw;
+        max-height:40vh;
+    }
+    .carrossel-gambiarra{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:20px;
     }
 </style>
+<script>
+    var imagens = {{ imagens | tojson }};
+    var indiceAtual = 0;
+
+    function mostrarImagem(indice) {
+        document.getElementById("imagemCarrossel").src = imagens[indice].link;
+    }
+
+    function proximo() {
+        indiceAtual = (indiceAtual + 1) % imagens.length;
+        mostrarImagem(indiceAtual);
+    }
+
+    function anterior() {
+        indiceAtual = (indiceAtual - 1 + imagens.length) % imagens.length;
+        mostrarImagem(indiceAtual);
+    }
+</script>
 {% endblock %}

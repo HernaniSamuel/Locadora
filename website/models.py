@@ -40,4 +40,10 @@ class Carro(db.Model):
     locador = db.Column(db.Integer(), db.ForeignKey('user.id'))
     preco_base = db.Column(db.Float(), nullable=False)
     descricao = db.Column(db.String(length=500))
-    imagem = db.Column(db.String(), default=None)
+    imagem = db.relationship('Foto', backref='imagem', lazy=True)
+
+
+class Foto(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    link = db.Column(db.String(), nullable=False)
+    carro = db.Column(db.Integer(), db.ForeignKey('carro.id'))

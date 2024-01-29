@@ -7,6 +7,7 @@
         {% for carro in carros %}
         <div class="product-container">
             <h3>{{ carro.nome }}</h3>
+            {% if carro.imagem[0] %}<img src="{{ carro.imagem[0].link }}" alt="imagem do carro"/>{% endif %}
             <p>Marca: {{ carro.marca }}</p>
             <p>Ano: {{ carro.ano_fabricacao }}</p>
             <p>Consumo (km/l): {{ carro.consumo }}</p>
@@ -14,6 +15,8 @@
             <div class="buttons">
                 <a class="btn btn-outline btn-danger" href="{{ url_for('routes.delecao_carro', carro_id=carro.id) }}">Deletar</a>
                 <a class="btn btn-outline btn-info" href="{{ url_for('routes.edicao_carro', carro_id=carro.id) }}">Editar</a>
+                <a class="btn btn-outline btn-info" href="{{ url_for('routes.adicionar_imagem', carro_id=carro.id) }}">Adicionar imagem</a>
+                <a class="btn btn-outline btn-info" href="{{ url_for('routes.adicionar_imagem', carro_id=carro.id) }}">Adicionar imagem</a>
             </div>
         </div>
         {% endfor %}
