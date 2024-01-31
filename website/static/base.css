@@ -1,0 +1,14 @@
+*{
+    margin: 0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+
+nav{
+    background-color: #001d2b70;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.39);
+}
+
+.navbar-brand{
+    font-size: 1.3em;
+}

@@ -1,0 +1,84 @@
+body {
+    background-image: url('/static/images/home_bg.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    color:white;
+
+
+}
+
+.container{
+    text-align: center;
+
+    display: block;
+    margin: 10vh auto;
+
+    padding:15px;
+    border-radius: 10px;
+}
+
+.container > h1{
+    font-size: 5em;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.452);
+    margin-bottom: 24px;
+}
+
+.container > p{
+    font-size: 1.4em;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.452);
+    margin-bottom: 32px;
+}
+
+.container > a{
+    background-color: rgba(255, 255, 255, 0.623);
+    border-color: rgb(65, 65, 65);
+    color: rgb(43, 43, 43);
+    font-size: 1.6em;
+}
+
+.container > a:hover{
+    background-color:  #001d2b70;
+    color: rgb(255, 255, 255);
+    border-color: rgb(255, 255, 255);
+}
+
+@keyframes slideUpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.container > h1, .container > p, .container > a {
+    animation: slideUpFadeIn 0.5s ease-out forwards;
+}
+
+
+@media screen and (min-width:768px) and (max-width:992px) {
+    .container > h1{
+        font-size: 7vw;
+    }
+    .container > p{
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width:768px){
+    .container > h1{
+        font-size: 8vw;
+    }
+    .container > p{
+        font-size: 4vw;
+    }
+    .container > a{
+        font-size: 4vw;
+    }
+}
