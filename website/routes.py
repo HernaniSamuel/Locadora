@@ -312,7 +312,7 @@ def delete_img(img_id, carro_id):
         db.session.delete(img_del)
         db.session.commit()
         flash("Imagem deletada com sucesso!", category="success")
-        return render_template('ImgList.html', current_user=current_user, carro=carro)
+        return redirect(url_for('routes.edicao'))
 
     else:
         flash('Esta página é apenas para administradores!', category='danger')

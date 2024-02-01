@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
+{% block style %}<link rel="stylesheet" href="../static/confirmacoes.css">{% endblock %}
 {% block title %}Processando pedido{% endblock %}
 {% block content %}
-    <h1>Confirmar pedido</h1>
-    <p>Você está prestes a alugar {{ carro.marca }} {{ carro.nome }} por R${{ carro.preco_base }}. Ao clicar em Alugar você confirmará o aluguel e o pagamento será efetuado. </p>
-    <form method="post" class="form-register">
-        {{ form.hidden_tag() }}
-        <a class="btn btn-secondary btn-lg" href="{{ url_for('routes.catalogo') }}">Cancelar aluguel</a>
-        {{ form.submit(class='btn btn-success btn-lg') }}
-    </form>
+    <div class="confirmation-container">
+        <h1>Confirmar pedido</h1>
+        <p>Você está prestes a alugar {{ carro.marca }} {{ carro.nome }} por R${{ carro.preco_base }}. Ao clicar em Alugar você confirmará o aluguel e o pagamento será efetuado. </p>
+        <form method="post" class="form-register">
+            {{ form.hidden_tag() }}
+            <a class="btn btn-secondary btn-lg" href="{{ url_for('routes.catalogo') }}">Cancelar aluguel</a>
+            {{ form.submit(class='btn btn-success btn-lg') }}
+        </form>
+    </div>
 {% endblock %}

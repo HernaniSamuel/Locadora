@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
+{% block style %}<link rel="stylesheet" href="../static/imgList.css">{% endblock %}
 {% block title %}Lista de imagens{% endblock %}
 
 {% block content %}
-    {% if imagens == [] %}
-        <h3>Este veículo não possui imagens</h3>
-    {% else %}
-        {% for img in carro.imagem %}
-            <img src="{{ img.link }}" alt="Imagem de carro">
-            <a class="btn btn-danger" href="{{ url_for('routes.delete_img', img_id=img.id, carro_id=carro.id) }}">Deletar imagem</a>
-        {% endfor %}
-    {% endif %}
-    <style>
-        img{
-            max-width: 10vw;
-            max-height: 10vh;
-        }
-    </style>
+        {% if imagens == [] %}
+            <h3>Este veículo não possui imagens</h3>
+        {% else %}
+                {% for img in carro.imagem %}
+                <div class="carro-imagem-container">
+                    <img src="{{ img.link }}" alt="Imagem de carro">
+                    <a class="btn btn-danger" href="{{ url_for('routes.delete_img', img_id=img.id, carro_id=carro.id) }}">Deletar imagem</a>
+                </div>
+                {% endfor %}
+        {% endif %}
+
 {% endblock %}

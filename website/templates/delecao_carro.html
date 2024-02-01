@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+{% block style %}<link rel="stylesheet" href="../static/confirmacoes.css">{% endblock %}
 {% block title %}Deletar veículo{% endblock %}
 {% block content %}
-    <h1>Confirmar deleção</h1>
-    <p>Você está prestes a deletar {{ carro.marca }} {{ carro.nome }}. Ao clicar em Deletar, você confirmará a exclusão do veículo da base de dados, o processo não poderá ser desfeito. </p>
-    <form method="post" class="form-register">
-        {{ form.hidden_tag() }}
-        <a class="btn btn-secondary btn-lg" href="{{ url_for('routes.edicao') }}">Cancelar deleção</a>
-        {{ form.submit(class='btn btn-danger btn-lg') }}
-    </form>
+    <div class="confirmation-container">
+        <h1>Confirmar deleção</h1>
+        <p>Você está prestes a deletar {{ carro.marca }} {{ carro.nome }}. Ao clicar em Deletar, você confirmará a exclusão do veículo da base de dados, o processo não poderá ser desfeito. </p>
+        <form method="post" class="form-register">
+            {{ form.hidden_tag() }}
+            <a class="btn btn-secondary btn-lg" href="{{ url_for('routes.edicao') }}">Cancelar deleção</a>
+            {{ form.submit(class='btn btn-danger btn-lg') }}
+        </form>
+    </div>
+
 {% endblock %}

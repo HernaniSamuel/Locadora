@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block style %}<link rel="stylesheet" href="../static/car_info.css">{% endblock %}
 {% block title %}Sobre{% endblock %}
 
 {% block content %}
@@ -7,48 +7,24 @@
         <h1>Sobre o {{ carro.nome }}</h1>
         {% if imagens != [] %}
             <div class="carrossel-gambiarra">
-                <button onclick="anterior()">Anterior</button>
+                <button class="btn btn-primary" onclick="anterior()">Anterior</button>
                 <img id="imagemCarrossel" src="{{ imagens[0].link }}">
-                <button onclick="proximo()">Próximo</button>
+                <button class="btn btn-primary" onclick="proximo()">Próximo</button>
             </div>
         {% endif %}
         <p>{{ carro.descricao }}</p>
         <p>Marca: {{ carro.marca }}</p>
         <p>Ano de fabricação: {{ carro.ano_fabricacao }}</p>
         <p>Consumo (km/l misto): {{ carro.consumo }}</p>
-        {% if carro.locador == None %}
-            <a class="btn btn-outline btn-success" href="{{ url_for('routes.processamento', carro_id=carro.id) }}">Alugar</a>
-        {% endif %}
-        <a class="btn btn-outline btn-secondary" href="{{ url_for('routes.catalogo') }}">Voltar</a>
+        <div class="buttons">
+            {% if carro.locador == None %}
+                <a class="btn btn-outline btn-success" href="{{ url_for('routes.processamento', carro_id=carro.id) }}">Alugar</a>
+            {% endif %}
+            <a class="btn btn-outline btn-secondary" href="{{ url_for('routes.catalogo') }}">Voltar</a>
+        </div>
+
     </div>
 
-<style>
-    .container{
-        width:100%;
-        text-align:center;
-    }
-    img{
-        max-width:90vw;
-        max-height:40vh;
-    }
-    .carrossel-gambiarra{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        gap:20px;
-        max-width:60vw;
-        margin:auto;
-    }
-    @media screen and (max-width: 720px) {
-    .carrossel-gambiarra{
-        max-width:50vw;
-    }
-    img{
-        max-width:40vw;
-        max-height:60vh;
-    }
- }
-</style>
 <script>
     var imagens = {{ imagens | tojson }};
     var indiceAtual = 0;

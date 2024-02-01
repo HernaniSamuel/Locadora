@@ -1,0 +1,55 @@
+body{
+    background-color: #adadad;
+}
+
+.deletar-usuarios-container {
+    max-width: 800px;
+    margin: 25vh auto;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   }
+   
+   .deletar-usuarios-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 24px;
+    color: #333;
+   }
+   
+   .deletar-usuarios-container p {
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+    color: #333;
+   }
+
+   .user-text{
+    border-top: 1px solid #ccc;
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   }
+   
+   .deletar-usuarios-container a {
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    background-color: #dc3545;
+    margin-left: 1rem;
+   }
+   
+   .deletar-usuarios-container a:hover {
+    background-color: #bd2130;
+   }
+   
+   @media (max-width: 768px) {
+    .deletar-usuarios-container {
+      padding: 1.5rem;
+    }
+   }

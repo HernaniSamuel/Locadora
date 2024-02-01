@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
+{% block style %}<link rel="stylesheet" href="../static/confirmacoes.css">{% endblock %}
 {% block title %}Deletar veículo{% endblock %}
 {% block content %}
-    <h1>Confirmar deleção</h1>
-    <p>Você está prestes a deletar sua própria conta. Ao clicar em deletar, sua conta será perdida para sempre e todos os carros atualmente alugados por você serão buscados pela locadora de imediato, conforme previsto no contrato.</p>
-    <form method="post" class="form-register">
-        {{ form.hidden_tag() }}
-        <a class="btn btn-secondary btn-lg" href="{{ url_for('routes.home') }}">Cancelar deleção</a>
-        {{ form.submit(class='btn btn-danger btn-lg') }}
-    </form>
+    <div class="confirmation-container">
+        <h1>Confirmar deleção</h1>
+        <p>Você está prestes a deletar sua própria conta. Ao clicar em deletar, sua conta será perdida para sempre e todos os carros atualmente alugados por você serão buscados pela locadora de imediato, conforme previsto no contrato.</p>
+        <form method="post" class="form-register">
+            {{ form.hidden_tag() }}
+            <a class="btn btn-secondary btn-lg" href="{{ url_for('routes.home') }}">Cancelar deleção</a>
+            {{ form.submit(class='btn btn-danger btn-lg') }}
+        </form>
+    </div>
 {% endblock %}

@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
+{% block style %}<link rel="stylesheet" href="../static/catalogo.css">{% endblock %}
 {% block title %}Catálogo{% endblock %}
 {% block content %}
-    <h2 style="margin:24px 0px; text-align:center; text-transform:uppercase;">Veículos disponíveis</h2>
+    <h2>Veículos disponíveis</h2>
     <div class="products-container">
         {% for carro in carros %}
         <div class="product-container">
             {% if carro.imagem[0] %}<img src="{{ carro.imagem[0].link }}" alt="imagem do carro"/>{% endif %}
             <h3>{{ carro.nome }}</h3>
             <p>{{ carro.descricao }}</p>
-            <p>Preço base: R${{ carro.preco_base }}</p>
+            <p>Preço base: <span class="price">R${{ carro.preco_base }}</span></p>
 
             <div class="buttons">
                 <a class="btn btn-outline btn-info" href="{{ url_for('routes.car_info', carro_id=carro.id) }}">Ver mais</a>
@@ -18,42 +19,5 @@
         </div>
         {% endfor %}
     </div>
-    <style>
-        img{
-            width:300px;
-            display:block;
-            margin:auto;
-            border:1px solid black;
-        }
-        .products-container{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
 
-        .product-container{
-            border:1px solid blue;
-            border-radius: 5px;
-            padding: 10px;
-            margin:10px;
-
-            width:400px;
-            min-height:400px
-        }
-
-        .product-container > h3{
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        .product-container > p{
-            margin: 24px 12px;
-        }
-
-        .product-container > .buttons{
-            text-align: center;
-            margin:12px;
-        }
-    </style>
 {% endblock %}

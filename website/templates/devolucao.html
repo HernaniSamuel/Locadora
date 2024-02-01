@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
+{% block style %}<link rel="stylesheet" href="../static/confirmacoes.css">{% endblock %}
 {% block title %}Processando pedido{% endblock %}
 {% block content %}
-    <h1>Confirmar devolução</h1>
-    <p>Você tem certeza de que deseja efetuar a devolução de {{ carro.marca }} {{ carro.nome }}? Caso clique em devolver, estará confirmando a devolução e permitindo com que a locadora busque o carro em seu endereço imediatamente, como previsto no contrato. </p>
-    <form method="post" class="form-register">
-        {{ form.hidden_tag() }}
-        <a class="btn btn-secondary btn-lg" href="{{ url_for('routes.catalogo') }}">Cancelar devolução</a>
-        {{ form.submit(class='btn btn-success btn-lg') }}
-    </form>
+    <div class="confirmation-container">
+        <h1>Confirmar devolução</h1>
+        <p>Você tem certeza de que deseja efetuar a devolução de {{ carro.marca }} {{ carro.nome }}? Caso clique em devolver, estará confirmando a devolução e permitindo com que a locadora busque o carro em seu endereço imediatamente, como previsto no contrato. </p>
+        <form method="post" class="form-register">
+            {{ form.hidden_tag() }}
+            <a class="btn btn-secondary btn-lg" href="{{ url_for('routes.catalogo') }}">Cancelar devolução</a>
+            {{ form.submit(class='btn btn-success btn-lg') }}
+        </form>
+    </div>
 {% endblock %}

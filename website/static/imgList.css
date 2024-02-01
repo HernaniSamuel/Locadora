@@ -1,0 +1,46 @@
+.carro-imagem-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid #333;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .carro-imagem-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+    }
+    
+    .carro-imagem-container img {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    }
+    
+    .carro-imagem-container .btn {
+    display: inline-block;
+    margin-right: 1rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    background-color: #dc3545;
+    }
+    
+    .carro-imagem-container .btn:hover {
+    background-color: #bd2130;
+    }
+    
+    @media (max-width: 768px) {
+    .carro-imagem-container {
+      padding: 1.5rem;
+    }
+    }

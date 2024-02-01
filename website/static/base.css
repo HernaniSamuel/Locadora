@@ -5,6 +5,10 @@
 }
 
 nav{
+    position: fixed;
+    width: 100vw;
+    top:0;
+    left:0;
     background-color: #001d2b70;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.39);
 }
